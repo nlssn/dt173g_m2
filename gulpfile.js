@@ -57,4 +57,9 @@ function serve() {
 }
 
 exports.clean = clean;
+exports.html = html;
+exports.styles = styles;
+exports.scripts = scripts;
+exports.images = images;
+exports.serve = serve;
 exports.default = series(clean, parallel(html, styles, scripts, images), serve);
