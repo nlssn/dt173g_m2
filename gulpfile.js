@@ -1,4 +1,3 @@
-//const gulp = require('gulp');
 const { src, dest, series, parallel, watch } = require('gulp');
 const concat = require('gulp-concat');
 const postcss = require('gulp-postcss');
