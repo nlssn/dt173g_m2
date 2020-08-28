@@ -33,7 +33,7 @@ function imagesTask() {
 }
 
 function watchTask() {
-   watch(['src/css/**/*.css',], { intervall: 1000 }, styles);
+   watch(['src/css/**/*.css',], { intervall: 1000 }, stylesTask);
 }
 
 exports.default = series(parallel(htmlTask,stylesTask, scriptsTask, imagesTask), watchTask);
