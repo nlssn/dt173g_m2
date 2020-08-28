@@ -6,6 +6,7 @@ const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 const terser = require('gulp-terser');
 const imagemin = require('gulp-imagemin');
+const browserSync = require('browser-sync').create();
 
 
 function htmlTask() {
@@ -16,7 +17,8 @@ function stylesTask() {
    return src('src/css/**/*.css')
       .pipe(concat('global.css'))
       .pipe(postcss([autoprefixer(), cssnano()]))
-      .pipe(dest('dist/css'));
+      .pipe(dest('dist/css'))
+      .pipe(browserSync.stream());
 }
 
 function scriptsTask() {
@@ -33,6 +35,11 @@ function imagesTask() {
 }
 
 function watchTask() {
+   browserSync.init({
+      server: 'dist/'
+   });
+
+   watch(['src/*.html']).on('change', browserSync.reload);
    watch(['src/css/**/*.css',], { intervall: 1000 }, stylesTask);
 }
 
