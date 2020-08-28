@@ -8,9 +8,9 @@ const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 
 const htmlPath = 'src/*html';
-const stylesPath = 'src/css/**/*.css';
-const scriptsPath = 'src/js/**/*.js';
-const imagesPath = 'src/images/*';
+const stylesPath = 'src/assets/css/**/*.css';
+const scriptsPath = 'src/assets/js/**/*.js';
+const imagesPath = 'src/assets/images/*';
 
 function html() {
    return src(htmlPath)
@@ -21,7 +21,7 @@ function styles() {
    return src(stylesPath)
       .pipe(concat('global.css'))
       .pipe(postcss([autoprefixer(), cssnano()]))
-      .pipe(dest('dist/css'))
+      .pipe(dest('dist/assets/css'))
       .pipe(browserSync.stream());
 }
 
@@ -29,14 +29,14 @@ function scripts() {
    return src(scriptsPath)
       .pipe(concat('global.js'))
       .pipe(terser())
-      .pipe(dest('dist/js'))
+      .pipe(dest('dist/assets/js'))
       .pipe(browserSync.stream());
 }
 
 function images() {
    return src(imagesPath)
       .pipe(imagemin())
-      .pipe(dest('dist/images'))
+      .pipe(dest('dist/assets/images'))
       .pipe(browserSync.stream());
 }
 
