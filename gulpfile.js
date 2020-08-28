@@ -19,7 +19,8 @@ function clean() {
 
 function html() {
    return src(htmlPath)
-      .pipe(dest('dist'));
+      .pipe(dest('dist'))
+      .pipe(browserSync.stream());
 }
 
 function styles() {
@@ -50,7 +51,7 @@ function serve() {
       server: 'dist/'
    });
    
-   watch([htmlPath], { intervall: 1000 }, series(html, browserSync.reload));
+   watch([htmlPath], { intervall: 1000 }, html);
    watch([stylesPath], { intervall: 1000 }, styles);
    watch([scriptsPath], {intervall: 1000 }, scripts);
    watch([imagesPath], {intervall: 1000 }, images);
