@@ -9,11 +9,11 @@ const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 
 
-function htmlTask() {
+function html() {
    return src('src/*.html').pipe(dest('dist'));
 }
 
-function stylesTask() {
+function styles() {
    return src('src/css/**/*.css')
       .pipe(concat('global.css'))
       .pipe(postcss([autoprefixer(), cssnano()]))
@@ -21,20 +21,20 @@ function stylesTask() {
       .pipe(browserSync.stream());
 }
 
-function scriptsTask() {
+function scripts() {
    return src('src/js/**/*.js')
       .pipe(concat('global.js'))
       .pipe(terser())
       .pipe(dest('dist/js'));
 }
 
-function imagesTask() {
+function images() {
    return src('src/images/*')
       .pipe(imagemin())
       .pipe(dest('dist/images'));
 }
 
-function watchTask() {
+function serve() {
    browserSync.init({
       server: 'dist/'
    });
@@ -43,4 +43,4 @@ function watchTask() {
    watch(['src/css/**/*.css',], { intervall: 1000 }, stylesTask);
 }
 
-exports.default = series(parallel(htmlTask,stylesTask, scriptsTask, imagesTask), watchTask);
+exports.default = series(parallel(html,styles, scripts, images), serve);
