@@ -1,3 +1,4 @@
+/* Load the required modules */
 const { src, dest, series, parallel, watch } = require('gulp');
 const concat = require('gulp-concat');
 const postcss = require('gulp-postcss');
@@ -8,21 +9,39 @@ const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 
+/* Set paths as consts for easy access */
 const htmlPath = 'src/*html';
 const stylesPath = 'src/assets/css/**/*.css';
 const scriptsPath = 'src/assets/js/**/*.js';
 const imagesPath = 'src/assets/images/*';
 
+/*
+ * TASK: Clean
+ * Removes the dist folder
+ */
 function clean() {
    return del(['dist/']);
 }
 
+/*
+ * TASK: html
+ * Move all HTML files to dist, then tell bSync to refresh.
+ */
 function html() {
    return src(htmlPath)
       .pipe(dest('dist'))
       .pipe(browserSync.stream());
 }
 
+/*
+ * TASK: styles
+ * First concatenate all CSS files into one file.
+ * Use postcss to simoultaneously;
+ *  - add vendor prefixes with autoprefixer
+ *  - minify the code with cssnano
+ * Then move the new file to dist.
+ * Finally tell bSync to inject the new styles.
+ */
 function styles() {
    return src(stylesPath)
       .pipe(concat('global.css'))
@@ -31,6 +50,13 @@ function styles() {
       .pipe(browserSync.stream());
 }
 
+/*
+ * TASK: scripts
+ * First concatenate all JS files into one file.
+ * Use terser to minify the code.
+ * Then move the new file to dist.
+ * Finally tell bSync to inject the new scripts.
+ */
 function scripts() {
    return src(scriptsPath)
       .pipe(concat('global.js'))
@@ -39,6 +65,11 @@ function scripts() {
       .pipe(browserSync.stream());
 }
 
+/*
+ * TASK: images
+ * Use imagemin to compress all available images.
+ * Move all image files to dist, then tell bSync to refresh.
+ */
 function images() {
    return src(imagesPath)
       .pipe(imagemin())
@@ -46,6 +77,11 @@ function images() {
       .pipe(browserSync.stream());
 }
 
+/*
+ * TASK: serve
+ * Initialize bSync to start serving files from dist folder.
+ * Watch all folders and do their respective task if any files are changed.
+ */
 function serve() {
    browserSync.init({
       server: 'dist/'
@@ -57,10 +93,13 @@ function serve() {
    watch([imagesPath], {intervall: 1000 }, images);
 }
 
+/* Export all public tasks - type gulp <task> to use */
 exports.clean = clean;
 exports.html = html;
 exports.styles = styles;
 exports.scripts = scripts;
 exports.images = images;
 exports.serve = serve;
+
+/* Export default command - type gulp to use */
 exports.default = series(clean, parallel(html, styles, scripts, images), serve);
