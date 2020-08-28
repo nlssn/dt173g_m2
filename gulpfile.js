@@ -6,11 +6,16 @@ const autoprefixer = require('autoprefixer');
 const terser = require('gulp-terser');
 const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
+const del = require('del');
 
 const htmlPath = 'src/*html';
 const stylesPath = 'src/assets/css/**/*.css';
 const scriptsPath = 'src/assets/js/**/*.js';
 const imagesPath = 'src/assets/images/*';
+
+function clean() {
+   return del(['dist/']);
+}
 
 function html() {
    return src(htmlPath)
@@ -51,4 +56,5 @@ function serve() {
    watch([imagesPath], {intervall: 1000 }, images);
 }
 
-exports.default = series(parallel(html,styles, scripts, images), serve);
+exports.clean = clean;
+exports.default = series(clean, parallel(html, styles, scripts, images), serve);
