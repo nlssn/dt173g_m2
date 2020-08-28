@@ -1,6 +1,7 @@
-const gulp = require('gulp');
+//const gulp = require('gulp');
 const { src, dest, parallel } = require('gulp');
 const terser = require('gulp-terser');
+const imagemin = require('gulp-imagemin');
 
 
 function html() {
@@ -13,4 +14,10 @@ function scripts() {
       .pipe(dest('dist/js'));
 }
 
-exports.default = parallel(html,scripts);
+function images() {
+   return src('src/images/*')
+      .pipe(imagemin())
+      .pipe(dest('dist/images'));
+}
+
+exports.default = parallel(html,scripts, images);
