@@ -1,0 +1,26 @@
+{
+  "name": "dt173g_m2",
+  "version": "1.0.0",
+  "description": "Learning gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlssn/dt173g_m2.git"
+  },
+  "keywords": [
+    "gulp",
+    "node"
+  ],
+  "author": "Johannes Nilsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nlssn/dt173g_m2/issues"
+  },
+  "homepage": "https://github.com/nlssn/dt173g_m2#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
