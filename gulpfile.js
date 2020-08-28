@@ -1,5 +1,5 @@
 //const gulp = require('gulp');
-const { src, dest, parallel } = require('gulp');
+const { src, dest, series, parallel, watch } = require('gulp');
 const concat = require('gulp-concat');
 const postcss = require('gulp-postcss');
 const cssnano = require('cssnano');
@@ -32,4 +32,8 @@ function images() {
       .pipe(dest('dist/images'));
 }
 
-exports.default = parallel(html,styles, scripts, images);
+function watchTask() {
+   watch(['src/css/**/*.css',], { intervall: 1000 }, styles);
+}
+
+exports.default = series(parallel(html,styles, scripts, images), watchTask);
