@@ -1,14 +1,16 @@
-const { series } = require('gulp');
+const gulp = require('gulp');
+const { src, dest, parallel } = require('gulp');
+const terser = require('gulp-terser');
 
-function clean(cb) {
-   // Cleans the dest
-   cb();
+
+function html() {
+   return src('src/*.html').pipe(dest('dist'));
 }
 
-function build(cb) {
-   // This is the build
-   cb();
+function scripts() {
+   return src('src/js/script.js')
+      .pipe(terser())
+      .pipe(dest('dist/js'));
 }
 
-exports.build = build;
-exports.default = series(clean, build);
+exports.default = parallel(html,scripts);

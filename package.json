@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/nlssn/dt173g_m2#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-terser": "^1.4.0"
   }
 }
