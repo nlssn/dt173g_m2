@@ -27,11 +27,11 @@ Min automatiserade miljö använder följande moduler:
 - **del** - En enkel liten modul som gör det möjligt att radera filer och kataloger.
 
 ## Installation
-För att installera den automatiserade miljön lokalt så använder du följande kommandon:
+För att installera den automatiserade miljön lokalt så använder du följande tre kommandon:
 
 ```
-git clone https://github.com/nlssn/dt173g_m2.git dt173g_m2
-cd /dt173g_m2
+git clone https://github.com/nlssn/dt173g_m2.git
+cd dt173g_m2/
 npm install
 ```
 
