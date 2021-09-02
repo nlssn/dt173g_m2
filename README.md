@@ -1,7 +1,7 @@
 # DT173G, Moment 2
 
 ## Syfte
-Syftet med denna automatiserade miljö är att snabba upp, effektivisera och förenkla utvecklingsproccessen. Att ta bort små, repetitiva arbetsuppgifter gör att du som utvecklare istället kan fokusera på koden & designen av din webbplats. 
+Syftet med denna automatiserade miljö är att snabba upp, effektivisera och förenkla utvecklingsprocessen. Att ta bort små, repetitiva arbetsuppgifter gör att du som utvecklare istället kan fokusera på koden & designen av din webbplats. 
 
 Min miljö automatiserar:
 - konkatenerning och minifiering av JavaScript-filer,
@@ -14,8 +14,8 @@ Automatiseringen säkerställer att dessa uppgifter blir gjorda på ett korrekt 
 
 För att ytterligare underlätta för dig som utvecklare startas används också BrowserSync. En lokal server som öppnar en webbläsare så att du kan se din webbsida och den uppdateras live när du sparar en fil i projektet. Det fungerar också att besöka webbplatsen från din mobil eller surfplatta (på samma nätverk).
 
-## Moduler / Paket
-Min automatiserade miljö använder följande moduler:
+## Paket
+Min automatiserade miljö använder följande paket:
 - **gulp** - Själva systemet som används för att skapa den automatiserade miljön
 - **gulp-concat** - Sköter konkatenering (sammanslagning) av flera filer. Valde denna eftersom den är generisk och kan således hantera både JS och CSS.
 - **gulp-postcss** - Används som en mellanhand för att köra samma CSS genom flera andra moduler. CSS läses bara in en gång, vilket gör att det blir en snabbare process.
