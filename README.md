@@ -18,7 +18,7 @@ För att ytterligare underlätta för dig som utvecklare startas används också
 Min automatiserade miljö använder följande moduler:
 - **gulp** - Själva systemet som används för att skapa den automatiserade miljön
 - **gulp-concat** - Sköter konkatenering (sammanslagning) av flera filer. Valde denna eftersom den är generisk och kan således hantera både JS och CSS.
-- **gulp-postcss** - Används som en mellanhand för att köra samma CSS genom flera andra moduler. CSSen läses bara in en gång, vilket gör att det blir en snabbare process.
+- **gulp-postcss** - Används som en mellanhand för att köra samma CSS genom flera andra moduler. CSS läses bara in en gång, vilket gör att det blir en snabbare process.
 - **cssnano** - Minifierar CSS. Byggd för att fungera med gulp-postcss, valde därför den över andra minifingsmoduler.
 - **autoprefixer** - Lägger till webbläsarspecifika CSS-prefix. Används av Google, Twitter och Alibaba - vilket gör att det känns pålitligt.
 - **gulp-terser** - Minifierar JavaScript. Detta plugin minifierar även ES6, så valde detta plugin över _gulp-uglify_.
@@ -37,20 +37,7 @@ npm install
 
 Vad som sker är att detta git repository klonas till en katalog som heter 'dt173g_m2'. Ifrån den katalogen kan npm installera alla moduler genom att läsa igenom filen 'package.json'. 
 
-## Starta Gulp
-Det allra enklaste är att köra gulpfilen med standardkommandot ``gulp``. Då körs alla _tasks_ i en förbestämd ordning för att bygga webbplatsen. Därefter gulp.watch koll efter eventuella uppdateringar av filer och kör passande _tasks_ vid behov.
+## Tillgängliga tasks
+Standardkommandot ``gulp`` kör alla _tasks_ i en förbestämd ordning för att bygga projektet. När alla filer är klara så börjar BrowserSync att serva dem automatiskt. Därefter håller 'gulp.watch' koll efter eventuella uppdateringar av filer och kör passande _tasks_ vid behov.
 
-Varje _task_ är också publikt exporterad och kan därför köras individuellt med kommandot ``gulp <task>``. Ett exempel:
-```
-gulp styles
-```
-
-### Tillgängliga tasks
-Gulpfilen består av ett antal _tasks_ som har specifika uppgifter. De är följande:
-
-- **clean** - rensar bort en existerande 'dist/' mapp, för att säkerställa att inga gamla filer ligger kvar och skapar problem.
-- **html** - flyttar alla HTML-filer till 'dist/' mappen.
-- **styles** - konkatenerar alla CSS-filer till en, samt lägger till automatiska "vendor prefixes" och minifierar koden.
-- **scripts** - kontatenerar alla JS-filer till en, samt minifierar koden.
-- **images** - minifierar alla bildfiler (oavsett filformat).
-- **serve** - startar en browserSync server och håller därefter koll (gulp.watch) på alla filer i 'src/' för att kunna köra en passande _task_ när de blir ändrade/uppdaterade.
+Kommandot ``gulp build`` kan användas om du endast vill generera nya filer i '/dist' och inte köra igång den lokala utvecklingsservern.
