@@ -12,7 +12,7 @@ Dessa tre delar ser till att den färdiga webbplatsen består av så få filer s
 
 Automatiseringen säkerställer att dessa uppgifter blir gjorda på ett korrekt och enhetligt sätt - varje gång.
 
-För att ytterligare underlätta för dig som utvecklare startas används också Browsersync. En lokal server som öppnar en webbläsare så att du kan se din webbsida och den uppdateras live när du sparar en fil i projektet. Det fungerar också att besöka webbplatsen från din mobil eller surfplatta (på samma nätverk).
+För att ytterligare underlätta för dig som utvecklare startas används också BrowserSync. En lokal server som öppnar en webbläsare så att du kan se din webbsida och den uppdateras live när du sparar en fil i projektet. Det fungerar också att besöka webbplatsen från din mobil eller surfplatta (på samma nätverk).
 
 ## Moduler / Paket
 Min automatiserade miljö använder följande moduler:
